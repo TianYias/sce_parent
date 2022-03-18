@@ -1,0 +1,22 @@
+server:
+  #端口号
+  port: 8081
+  servlet:
+    #上下文根
+    context-path: /
+
+spring:
+  application:
+    name: SEC-Controller
+
+dubbo:
+  #配置dubbo
+  application:
+    name: SEC-Controller
+  registry:
+    #指定注册中心
+    address: zookeeper://192.168.117.129:2181
+  consumer:
+    timeout: 3000
+  scan:
+    base-packages: com.tian.controller
