@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tian.mapper.SchoolMapper">
+
+    <resultMap id="BaseResultMap" type="com.tian.pojo.School">
+        <id property="universityCode" column="university_code" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="location" column="location" jdbcType="TINYINT"/>
+        <result property="schoolBadge" column="school_badge" jdbcType="VARCHAR"/>
+        <result property="introduce" column="Introduce" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        university_code,name,password,phone,
+        location,school_badge,Introduce
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_school ,t_schools
+        where
+        university_code = university_codes
+    </select>
+</mapper>

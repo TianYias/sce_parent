@@ -28,9 +28,11 @@ public class UserServiceImpl implements UserService {
         Page<User> page = new Page<>(queryPage.getCurrentPage(), queryPage.getPageSize());
         LambdaQueryWrapper<User> userQueryWrapper = new LambdaQueryWrapper<>();
         userQueryWrapper
-                .eq(queryPage.getQueryString() != null, User::getSex, queryPage.getQueryString())
+                .eq(queryPage.getQueryString() != null && queryPage.getQueryString() != "",
+                        User::getSex, queryPage.getQueryString())
                 .or()
-                .eq(queryPage.getQueryString() != null, User::getName, queryPage.getQueryString());
+                .eq(queryPage.getQueryString() != null && queryPage.getQueryString() != "",
+                        User::getName, queryPage.getQueryString());
        /* QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         if (queryPage.getQueryString() != null) {
             userQueryWrapper.eq("sex", queryPage.getQueryString());

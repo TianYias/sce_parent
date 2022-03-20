@@ -13,4 +13,12 @@
         id,name,sex
     </sql>
 
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where
+        id = #{id,jdbcType=NUMERIC}
+    </select>
+
 </mapper>

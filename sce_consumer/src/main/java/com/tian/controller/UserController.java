@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @DubboReference
     private UserService userService;
 
-    @RequestMapping("/user")
+    @RequestMapping("/a")
     public User queryUserById() {
         return userService.queryUserById();
     }
