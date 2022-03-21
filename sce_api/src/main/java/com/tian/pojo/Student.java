@@ -23,6 +23,7 @@ public class Student implements Serializable {
     /**
      * 密码
      */
+    //@JsonIgnore//禁止密码转成json格式传到客户端
     private String password;
 
     /**
@@ -33,7 +34,7 @@ public class Student implements Serializable {
     /**
      * 性别
      */
-    private Integer sex;
+    private String sex;
 
     /**
      * 年龄
@@ -48,7 +49,7 @@ public class Student implements Serializable {
     /**
      * 专业
      */
-    private Integer major;
+    private String major;
 
     /**
      * 电话

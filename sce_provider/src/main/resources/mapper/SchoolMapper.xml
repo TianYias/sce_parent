@@ -6,17 +6,22 @@
 
     <resultMap id="BaseResultMap" type="com.tian.pojo.School">
         <id property="universityCode" column="university_code" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
-        <result property="location" column="location" jdbcType="TINYINT"/>
+        <result property="location" column="location" jdbcType="VARCHAR"/>
         <result property="schoolBadge" column="school_badge" jdbcType="VARCHAR"/>
-        <result property="introduce" column="Introduce" jdbcType="VARCHAR"/>
+        <result property="introduce" column="introduce" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         university_code,name,password,phone,
-        location,school_badge,Introduce
+        location,school_badge,introduce
     </sql>
+
+    <delete id="deleteByUniversityCode">
+        delete from t_school where university_code = #{universityCode,jdbcType=VARCHAR}
+    </delete>
 
     <select id="findAll" resultMap="BaseResultMap">
         select
@@ -25,4 +30,46 @@
         where
         university_code = university_codes
     </select>
+
+    <select id="isSchool" resultType="java.lang.Integer">
+        select COUNT(*)
+        from t_school
+        where university_code = #{universityCode,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertSelective">
+        insert into t_school
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="universityCode != null">university_code,</if>
+            <if test="name != null">name,</if>
+            <if test="password != null">password,</if>
+            <if test="phone != null">phone,</if>
+            <if test="location != null">location,</if>
+            <if test="schoolBadge != null">school_badge,</if>
+            <if test="introduce != null">introduce,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="universityCode != null">#{universityCode,jdbcType=VARCHAR},</if>
+            <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+            <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+            <if test="phone != null">#{phone,jdbcType=VARCHAR},</if>
+            <if test="location != null">#{location,jdbcType=VARCHAR},</if>
+            <if test="schoolBadge != null">#{schoolBadge,jdbcType=VARCHAR},</if>
+            <if test="introduce != null">#{introduce,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSelective">
+        update t_school
+        <set>
+            <if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+            <if test="password != null">password=#{password,jdbcType=VARCHAR},</if>
+            <if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>
+            <if test="location != null">location=#{location,jdbcType=VARCHAR},</if>
+            <if test="schoolBadge != null">school_badge=#{schoolBadge,jdbcType=VARCHAR},</if>
+            <if test="introduce != null">introduce=#{introduce,jdbcType=VARCHAR},</if>
+        </set>
+        where university_code = #{universityCode,jdbcType=VARCHAR}
+    </update>
 </mapper>
