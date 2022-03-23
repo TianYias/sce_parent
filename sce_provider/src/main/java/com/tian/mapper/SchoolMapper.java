@@ -38,6 +38,7 @@ public interface SchoolMapper extends BaseMapper<School> {
      */
     Integer isSchool(String universityCode);
 
+
 }
 
 

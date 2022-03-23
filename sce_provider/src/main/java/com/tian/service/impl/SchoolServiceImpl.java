@@ -27,6 +27,41 @@ public class SchoolServiceImpl implements SchoolService {
         schoolMapper.insert(school);
     }
 
+    /*@Override
+    public Result login(LoginDTO loginDTO) {
+        QueryWrapper<School> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .and(i -> i
+                        .eq("university_code", loginDTO.getNameNumber())
+                        .or()
+                        .eq("name", loginDTO.getNameNumber()))
+                .eq("password", loginDTO.getPassword());
+        //return schoolMapper.exists(queryWrapper);
+        School school;
+        try {
+            school = schoolMapper.selectOne(queryWrapper);
+        } catch (Exception e) {
+            return Result.error(Constants.CODE_500);
+        }
+        if (school != null) {
+            *//*LoginDTO dto = new LoginDTO(
+                    school.getUniversityCode(),
+                    school.getPassword(),
+                    school.getName(),
+                    school.getSchoolBadge(),
+                    null);*//*
+            //设置别名
+            loginDTO.setNickname(school.getName());
+            //设置头像
+            loginDTO.setAvatar(school.getSchoolBadge());
+            //设置token
+            loginDTO.setToken(TokenUtils.genToken(loginDTO.getNameNumber(), loginDTO.getPassword()));
+            return Result.success(loginDTO);
+        } else {
+            return Result.error(Constants.CODE_600);
+        }
+    }*/
+
     @Override
     public void delete(String universityCode) {
         schoolMapper.deleteByUniversityCode(universityCode);
@@ -44,7 +79,7 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public PageResult findPage(QueryPage queryPage) {
-        Page<School> schoolPage = new Page<>(queryPage.getCurrentPage(),queryPage.getPageSize());
+        Page<School> schoolPage = new Page<>(queryPage.getCurrentPage(), queryPage.getPageSize());
         QueryWrapper<School> schoolQueryWrapper = new QueryWrapper<>();
         schoolQueryWrapper
                 .like(queryPage.getQueryString() != null && queryPage.getQueryString() != "",
@@ -58,7 +93,7 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public boolean inSchool(String universityCode) {
-        if (schoolMapper.isSchool(universityCode) != 0){
+        if (schoolMapper.isSchool(universityCode) != 0) {
             return true;
         }
         return false;

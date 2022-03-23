@@ -3,7 +3,6 @@ package com.tian.controller;
 import com.tian.entity.PageResult;
 import com.tian.entity.QueryPage;
 import com.tian.entity.Result;
-import com.tian.enums.MessageEnum;
 import com.tian.pojo.School;
 import com.tian.service.SchoolService;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -21,7 +20,7 @@ public class SchoolController {
     private SchoolService schoolService;
 
     @RequestMapping("/save")
-    public boolean save(@RequestBody School school) {
+    public Result save(@RequestBody School school) {
         try {
             if (schoolService.inSchool(school.getUniversityCode())) {
                 schoolService.update(school);
@@ -30,22 +29,22 @@ public class SchoolController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return Result.error();
 //            return new Result(false, MessageEnum.INSERT_SCHOOL_FAIL.getMessage());
         }
-        return true;
+        return Result.success();
 //        return new Result(true, MessageEnum.INSERT_SCHOOL_SUCCESS.getMessage());
     }
 
     @RequestMapping("/delete")
-    public boolean delete(String universityCode) {
+    public Result delete(String universityCode) {
         try {
             schoolService.delete(universityCode);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return Result.error();
         }
-        return true;
+        return Result.success();
     }
 
     /*@RequestMapping("/update")
@@ -67,10 +66,10 @@ public class SchoolController {
         } catch (Exception e) {
             e.printStackTrace();
             //查询失败
-            return new Result(false, MessageEnum.QUERY_ALL_SCHOOL_FAIL.getMessage());
+            return Result.error();
         }
         //查询成功
-        return new Result(true, MessageEnum.QUERY_ALL_SCHOOL_SUCCESS.getMessage(), schools);
+        return Result.success(schools);
     }
 
     @RequestMapping("/findPage")

@@ -47,4 +47,11 @@ public interface SchoolService {
      * @param school
      */
     void insert(School school);
+
+    /**
+     * 登录验证
+     * @param loginDTO
+     * @return
+     */
+    /*Result login(LoginDTO loginDTO) throws ServiceException;*/
 }
