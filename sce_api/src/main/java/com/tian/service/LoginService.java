@@ -6,4 +6,8 @@ import com.tian.entity.Result;
 public interface LoginService {
 
     public Result login(LoginDTO loginDTO);
+
+//    public boolean existence(Object loginId);
+
+    String getPasswordById(String loginNumber, String longinType);
 }

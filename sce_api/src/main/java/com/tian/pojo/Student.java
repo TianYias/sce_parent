@@ -1,11 +1,11 @@
 package com.tian.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * 
  * @TableName t_student
  */
 @Data
@@ -13,6 +13,7 @@ public class Student implements Serializable {
     /**
      * 学生id
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//转换成json时成为String类型
     private Long id;
 
     /**

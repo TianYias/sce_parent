@@ -72,4 +72,10 @@
         </set>
         where university_code = #{universityCode,jdbcType=VARCHAR}
     </update>
+
+    <select id="queryPasswordByUniversityCode" resultType="java.lang.String">
+        select password
+        from t_school
+        where university_code = #{universityCode,jdbcType=VARCHAR}
+    </select>
 </mapper>

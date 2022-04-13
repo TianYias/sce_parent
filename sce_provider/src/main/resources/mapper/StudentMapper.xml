@@ -25,4 +25,16 @@
         grade,major,phone,
         university_code,img,resume_id
     </sql>
+
+    <select id="isStudent" resultType="java.lang.Integer">
+        select COUNT(*)
+        from t_student
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="queryPasswordById" resultType="java.lang.String">
+        select password
+        from t_student
+        where id = #{id,jdbcType=NUMERIC}
+    </select>
 </mapper>

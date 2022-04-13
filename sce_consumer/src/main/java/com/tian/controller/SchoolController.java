@@ -30,10 +30,8 @@ public class SchoolController {
         } catch (Exception e) {
             e.printStackTrace();
             return Result.error();
-//            return new Result(false, MessageEnum.INSERT_SCHOOL_FAIL.getMessage());
         }
         return Result.success();
-//        return new Result(true, MessageEnum.INSERT_SCHOOL_SUCCESS.getMessage());
     }
 
     @RequestMapping("/delete")
@@ -46,17 +44,6 @@ public class SchoolController {
         }
         return Result.success();
     }
-
-    /*@RequestMapping("/update")
-    public Result upDate(@RequestBody School school) {
-        try {
-            schoolService.update(school);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new Result(false, MessageEnum.UPDATE_SCHOOL_FAIL.getMessage());
-        }
-        return new Result(true, MessageEnum.UPDATE_SCHOOL_SUCCESS.getMessage());
-    }*/
 
     @RequestMapping("/findAll")
     public Result findAll() {

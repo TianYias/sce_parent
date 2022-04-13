@@ -2,6 +2,7 @@ package com.tian.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.tian.entity.Constants;
 import com.tian.entity.PageResult;
 import com.tian.entity.QueryPage;
 import com.tian.mapper.SchoolMapper;
@@ -26,41 +27,6 @@ public class SchoolServiceImpl implements SchoolService {
         //schoolMapper.insertSelective(school);
         schoolMapper.insert(school);
     }
-
-    /*@Override
-    public Result login(LoginDTO loginDTO) {
-        QueryWrapper<School> queryWrapper = new QueryWrapper<>();
-        queryWrapper
-                .and(i -> i
-                        .eq("university_code", loginDTO.getNameNumber())
-                        .or()
-                        .eq("name", loginDTO.getNameNumber()))
-                .eq("password", loginDTO.getPassword());
-        //return schoolMapper.exists(queryWrapper);
-        School school;
-        try {
-            school = schoolMapper.selectOne(queryWrapper);
-        } catch (Exception e) {
-            return Result.error(Constants.CODE_500);
-        }
-        if (school != null) {
-            *//*LoginDTO dto = new LoginDTO(
-                    school.getUniversityCode(),
-                    school.getPassword(),
-                    school.getName(),
-                    school.getSchoolBadge(),
-                    null);*//*
-            //设置别名
-            loginDTO.setNickname(school.getName());
-            //设置头像
-            loginDTO.setAvatar(school.getSchoolBadge());
-            //设置token
-            loginDTO.setToken(TokenUtils.genToken(loginDTO.getNameNumber(), loginDTO.getPassword()));
-            return Result.success(loginDTO);
-        } else {
-            return Result.error(Constants.CODE_600);
-        }
-    }*/
 
     @Override
     public void delete(String universityCode) {
@@ -88,7 +54,7 @@ public class SchoolServiceImpl implements SchoolService {
                 .like(queryPage.getQueryString() != null && queryPage.getQueryString() != "",
                         "university_code", queryPage.getQueryString());
         schoolMapper.selectPage(schoolPage, schoolQueryWrapper);
-        return new PageResult(schoolPage.getTotal(), schoolPage.getRecords());
+        return new PageResult(Constants.CODE_250.getCode(), schoolPage.getTotal(), schoolPage.getRecords());
     }
 
     @Override
