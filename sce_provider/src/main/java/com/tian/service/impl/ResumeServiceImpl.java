@@ -9,8 +9,8 @@ import com.tian.entity.QueryPage;
 import com.tian.mapper.ResumeMapper;
 import com.tian.pojo.Resume;
 import com.tian.service.ResumeService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
 * @description 针对表【t_resume】的数据库操作Service实现
 * @createDate 2022-04-14 17:15:53
 */
-@Service
+@DubboService
 public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, Resume>
     implements ResumeService{
 
@@ -66,6 +66,11 @@ public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, Resume>
     @Override
     public void insert(Resume resume) {
         resumeMapper.insert(resume);
+    }
+
+    @Override
+    public Resume findOne(Long id){
+        return resumeMapper.selectById(id);
     }
 }
 

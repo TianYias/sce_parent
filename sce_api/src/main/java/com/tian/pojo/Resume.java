@@ -1,5 +1,6 @@
 package com.tian.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ public class Resume implements Serializable {
     /**
      * 
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//转换成json时成为String类型
     private Long id;
 
     /**

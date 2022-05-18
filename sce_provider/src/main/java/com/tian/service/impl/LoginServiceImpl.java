@@ -86,8 +86,11 @@ public class LoginServiceImpl implements LoginService {
                     return Result.error(Constants.CODE_500);
                 }
                 if (enterprise != null) {
+                    loginDTO.setNameNumber(enterprise.getId()+"");
                     //设置别名
                     loginDTO.setNickname(enterprise.getName());
+                    //设置头像
+                    loginDTO.setAvatar(enterprise.getImg());
                     //设置token
                     loginDTO.setToken(TokenUtils.genToken(loginDTO.getNameNumber(), loginDTO.getPassword()));
                     return Result.success(loginDTO);
@@ -110,8 +113,11 @@ public class LoginServiceImpl implements LoginService {
                     return Result.error(Constants.CODE_500);
                 }
                 if (student != null) {
+                    loginDTO.setNameNumber(student.getId()+"");
                     //设置别名
                     loginDTO.setNickname(student.getName());
+                    //设置头像
+                    loginDTO.setAvatar(student.getImg());
                     //设置token
                     loginDTO.setToken(TokenUtils.genToken(loginDTO.getNameNumber(), loginDTO.getPassword()));
                     return Result.success(loginDTO);
@@ -152,11 +158,11 @@ public class LoginServiceImpl implements LoginService {
             case "1":
                 return schoolMapper.queryPasswordByUniversityCode(loginNumber);
             case "2":
-                return enterpriseMapper.queryPasswordById(loginNumber);
+                return enterpriseMapper.queryPasswordById(Long.parseLong(loginNumber));
             case "3":
-                return studentMapper.queryPasswordById(loginNumber);
+                return studentMapper.queryPasswordById(Long.parseLong(loginNumber));
             case "4":
-                return adminMapper.queryPasswordById(Integer.parseInt(loginNumber));
+                return adminMapper.queryPasswordById(Long.parseLong(loginNumber));
         }
         return null;
     }

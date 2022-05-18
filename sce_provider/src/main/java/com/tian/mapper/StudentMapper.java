@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 public interface StudentMapper extends BaseMapper<Student> {
     Integer isStudent(@Param("id") Long id);
 
-    String queryPasswordById(String loginNumber);
+    String queryPasswordById(@Param("id") Long id);
 }
 
 

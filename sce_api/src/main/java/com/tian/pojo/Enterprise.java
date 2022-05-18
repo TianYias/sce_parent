@@ -14,7 +14,7 @@ public class Enterprise implements Serializable {
     /**
      * id
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING)//转换成json时成为String类型
+    @JsonFormat(shape = JsonFormat.Shape.STRING)//转换json时 转换成String类型
     private Long id;
 
     /**

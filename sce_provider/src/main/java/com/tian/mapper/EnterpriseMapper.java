@@ -11,7 +11,7 @@ public interface EnterpriseMapper extends BaseMapper<Enterprise> {
 
     Integer isEnterprise(@Param("id") Long id);
 
-    String queryPasswordById(String loginNumber);
+    String queryPasswordById(@Param("id") Long id);
 }
 
 

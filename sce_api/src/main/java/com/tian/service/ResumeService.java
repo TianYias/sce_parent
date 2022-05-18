@@ -50,4 +50,11 @@ public interface ResumeService {
      * @param resume
      */
     void insert(Resume resume);
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    Resume findOne(Long id);
 }

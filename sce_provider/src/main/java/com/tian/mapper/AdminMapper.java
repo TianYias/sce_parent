@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 * @Entity com.tian.pojo.Admin
 */
 public interface AdminMapper extends BaseMapper<Admin> {
-    String queryPasswordById(@Param("id") Integer id);
+    String queryPasswordById(@Param("id") Long id);
 }
 
 
