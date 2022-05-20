@@ -23,6 +23,7 @@ public interface StudentService {
      * @return
      */
     public PageResult findPage(QueryPage queryPage);
+    public PageResult findPage1(QueryPage queryPage);
 
     /**
      * 判断是否存在

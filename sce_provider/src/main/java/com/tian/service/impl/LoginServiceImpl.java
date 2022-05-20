@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
                         .and(i -> i
                                 .eq("university_code", loginDTO.getNameNumber())
                                 .or()
-                                .eq("name", loginDTO.getNameNumber()))
+                                .eq("phone", loginDTO.getNameNumber()))
                         .eq("password", loginDTO.getPassword());
                 //return schoolMapper.exists(schoolQueryWrapper);
                 School school;
@@ -77,7 +77,7 @@ public class LoginServiceImpl implements LoginService {
                         .and(i -> i
                                 .eq("id", loginDTO.getNameNumber())
                                 .or()
-                                .eq("name", loginDTO.getNameNumber()))
+                                .eq("phone", loginDTO.getNameNumber()))
                         .eq("password", loginDTO.getPassword());
                 Enterprise enterprise;
                 try {
@@ -104,7 +104,7 @@ public class LoginServiceImpl implements LoginService {
                         .and(i -> i
                                 .eq("id", loginDTO.getNameNumber())
                                 .or()
-                                .eq("name", loginDTO.getNameNumber()))
+                                .eq("phone", loginDTO.getNameNumber()))
                         .eq("password", loginDTO.getPassword());
                 Student student;
                 try {

@@ -32,6 +32,13 @@ public interface EnterpriseService {
     public boolean inEnterprise(Long id);
 
     /**
+     * 判断是否存在
+     * @param phone
+     * @return
+     */
+    //public boolean inEnterprise(String phone);
+
+    /**
      * 修改
      * @param enterprise
      */

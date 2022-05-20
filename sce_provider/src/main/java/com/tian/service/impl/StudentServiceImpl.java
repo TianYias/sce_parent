@@ -42,6 +42,24 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public PageResult findPage1(QueryPage queryPage) {
+        Page<Student> studentPage = new Page<>(queryPage.getCurrentPage(), queryPage.getPageSize());
+        QueryWrapper<Student> studentQueryWrapper = new QueryWrapper<>();
+        if (queryPage.getQueryString() != null && queryPage.getQueryString() != "") {
+            studentQueryWrapper
+                    .eq("university_code", queryPage.getUserId())
+                    .and(i -> i.like("name", queryPage.getQueryString())
+                            .or()
+                            .like("student_number", queryPage.getQueryString()));
+        } else {
+            studentQueryWrapper
+                    .eq("university_code", queryPage.getUserId());
+        }
+        studentMapper.selectPage(studentPage, studentQueryWrapper);
+        return new PageResult(Constants.CODE_250.getCode(), studentPage.getTotal(), studentPage.getRecords());
+    }
+
+    @Override
     public boolean inStudent(Long id) {
         if (studentMapper.isStudent(id) != 0) {
             return true;

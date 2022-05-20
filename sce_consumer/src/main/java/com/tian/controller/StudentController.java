@@ -47,4 +47,9 @@ public class StudentController {
     public PageResult findPage(@RequestBody QueryPage queryPage) {
         return studentService.findPage(queryPage);
     }
+
+    @RequestMapping("/findPage1")
+    public PageResult findPage1(@RequestBody QueryPage queryPage) {
+        return studentService.findPage1(queryPage);
+    }
 }

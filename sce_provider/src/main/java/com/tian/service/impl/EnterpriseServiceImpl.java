@@ -53,6 +53,14 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseMapper, Enterpr
         return false;
     }
 
+    /*@Override
+    public boolean inEnterprise(String phone) {
+        if (enterpriseMapper.isEnterprisep(phone) != 0) {
+            return true;
+        }
+        return false;
+    }*/
+
     @Override
     public void update(Enterprise enterprise) {
         enterpriseMapper.updateById(enterprise);

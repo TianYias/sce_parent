@@ -19,7 +19,7 @@ public enum Constants implements Serializable {
     CODE_405("405","图片上传失败"),
     CODE_500("500","系统错误"),
     CODE_600("600","用户名或密码错误"),
-
+    CODE_700("700","用户已注册"),
     ;
 
     private String code;

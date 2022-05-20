@@ -27,6 +27,12 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
 
+    <!--<select id="isEnterprisep" resultType="java.lang.Integer">
+        select COUNT(*)
+        from t_enterprise
+        where phone = #{phone,jdbcType=VARCHAR}
+    </select>-->
+
     <select id="queryPasswordById" resultType="java.lang.String">
         select password
         from t_enterprise
